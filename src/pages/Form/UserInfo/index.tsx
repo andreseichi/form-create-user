@@ -12,7 +12,7 @@ type UserInfoFormData = {
   password: string;
   confirmPassword: string;
   email: string;
-  birthDate: string;
+  birthDate: Date;
 };
 
 const userInfoFormSchema = z
@@ -21,7 +21,14 @@ const userInfoFormSchema = z
     password: z.string().min(3, "Senha obrigatória"),
     confirmPassword: z.string().min(3, "Confirmação de senha obrigatória"),
     email: z.string().email(),
-    birthDate: z.string().min(1, "Data obrigatória"),
+    birthDate: z
+      .preprocess((value) => {
+        if (typeof value == "string" || value instanceof Date)
+          return new Date(value);
+      }, z.date())
+      .transform((value) => {
+        return new Date(value).toISOString().split("T")[0];
+      }),
   })
   .required()
   .refine((data) => data.password === data.confirmPassword, {

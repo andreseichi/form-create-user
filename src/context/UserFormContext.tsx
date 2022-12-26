@@ -24,7 +24,7 @@ type UserInfo = {
   password: string;
   confirmPassword: string;
   email: string;
-  birthDate: string;
+  birthDate: Date;
 };
 
 type UserAddress = {
