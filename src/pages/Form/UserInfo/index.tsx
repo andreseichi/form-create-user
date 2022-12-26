@@ -20,10 +20,7 @@ const userInfoFormSchema = z
     name: z.string().min(1, "Nome obrigatório"),
     password: z.string().min(3, "Senha obrigatória"),
     confirmPassword: z.string().min(3, "Confirmação de senha obrigatória"),
-    email: z
-      .string()
-      .email()
-      .transform((val) => val.split("@")[1]),
+    email: z.string().email(),
     birthDate: z.string().min(1, "Data obrigatória"),
   })
   .required()
