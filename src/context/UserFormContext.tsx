@@ -4,6 +4,7 @@ type AuthContextData = {
   user: User;
   handleSetUserInfo: (userInfo: UserInfo) => void;
   handleSetUserAddress: (userAddress: UserAddress) => void;
+  handleSetUserAbout: (userAbout: UserAbout) => void;
 };
 
 type AuthProviderProps = {
@@ -13,6 +14,7 @@ type AuthProviderProps = {
 type User = {
   userInfo?: UserInfo;
   userAddress?: UserAddress;
+  userAbout?: UserAbout;
 };
 
 type UserInfo = {
@@ -32,6 +34,10 @@ type UserAddress = {
   reference: string;
 };
 
+type UserAbout = {
+  about: string;
+};
+
 export const UserFormContext = createContext({} as AuthContextData);
 
 export function UserFormProvider({ children }: AuthProviderProps) {
@@ -40,6 +46,7 @@ export function UserFormProvider({ children }: AuthProviderProps) {
   const [userAddress, setUserAddress] = useState<UserAddress>(
     {} as UserAddress
   );
+  const [userAbout, setUserAbout] = useState<UserAbout>({} as UserAbout);
 
   function handleSetUserInfo(userInfoData: UserInfo) {
     setUserInfo(userInfoData);
@@ -51,9 +58,19 @@ export function UserFormProvider({ children }: AuthProviderProps) {
     setUser({ ...user, userAddress: userAddressData });
   }
 
+  function handleSetUserAbout(userAboutData: UserAbout) {
+    setUserAbout(userAboutData);
+    setUser({ ...user, userAbout: userAboutData });
+  }
+
   return (
     <UserFormContext.Provider
-      value={{ user, handleSetUserInfo, handleSetUserAddress }}
+      value={{
+        user,
+        handleSetUserInfo,
+        handleSetUserAddress,
+        handleSetUserAbout,
+      }}
     >
       {children}
     </UserFormContext.Provider>
