@@ -5,6 +5,7 @@ type AuthContextData = {
   handleSetUserInfo: (userInfo: UserInfo) => void;
   handleSetUserAddress: (userAddress: UserAddress) => void;
   handleSetUserAbout: (userAbout: UserAbout) => void;
+  resetUser: () => void;
 };
 
 type AuthProviderProps = {
@@ -63,6 +64,10 @@ export function UserFormProvider({ children }: AuthProviderProps) {
     setUser({ ...user, userAbout: userAboutData });
   }
 
+  function resetUser() {
+    setUser({} as User);
+  }
+
   return (
     <UserFormContext.Provider
       value={{
@@ -70,6 +75,7 @@ export function UserFormProvider({ children }: AuthProviderProps) {
         handleSetUserInfo,
         handleSetUserAddress,
         handleSetUserAbout,
+        resetUser,
       }}
     >
       {children}
