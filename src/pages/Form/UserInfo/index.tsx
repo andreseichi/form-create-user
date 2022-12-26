@@ -28,7 +28,7 @@ const userInfoFormSchema = z
   })
   .required()
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "Senhas não conferem",
     path: ["confirmPassword"],
   });
 
@@ -99,19 +99,22 @@ export function UserInfo() {
         </Stack>
       </Box>
 
-      <Button
-        type="submit"
-        colorScheme="purple"
-        backgroundColor="purple.400"
-        _hover={{ filter: "brightness(0.9)" }}
-        size="lg"
-        alignSelf="flex-end"
-        position="absolute"
-        bottom="26px"
-        isLoading={formState.isSubmitting}
-      >
-        Próximo passo
-      </Button>
+      <Flex position="absolute" bottom="26px" alignSelf="flex-end" gap={6}>
+        <Button
+          type="submit"
+          colorScheme="purple"
+          backgroundColor="purple.400"
+          _hover={{ filter: "brightness(0.9)" }}
+          size="lg"
+          minW="226px"
+          w="100%"
+          fontWeight={500}
+          fontSize="16px"
+          isLoading={formState.isSubmitting}
+        >
+          Próximo passo
+        </Button>
+      </Flex>
     </Flex>
   );
 }
