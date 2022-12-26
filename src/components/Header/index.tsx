@@ -1,7 +1,22 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import { Article, House, User } from "phosphor-react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export function Header() {
+  const { pathname } = useLocation();
+
+  const addressPageIconColor =
+    pathname === "/address"
+      ? "purple.400"
+      : pathname === "/about"
+      ? "success"
+      : "gray.400";
+
+  useEffect(() => {
+    console.log(pathname);
+  }, []);
+
   return (
     <Flex direction="column" gap={12}>
       <Text as="h1" fontSize="4xl" fontWeight={500}>
@@ -19,7 +34,11 @@ export function Header() {
             justifyContent="center"
             borderRadius="50%"
           >
-            <Icon as={User} color="purple.400" weight="fill" />
+            <Icon
+              as={User}
+              color={pathname === "/" ? "purple.400" : "success"}
+              weight="fill"
+            />
           </Flex>
 
           <Text fontSize="md">Identificação do Usuário</Text>
@@ -34,7 +53,7 @@ export function Header() {
             justifyContent="center"
             borderRadius="50%"
           >
-            <Icon as={House} color="gray.400" weight="fill" />
+            <Icon as={House} color={addressPageIconColor} weight="fill" />
           </Flex>
 
           <Text as="h2" fontSize="md">
@@ -51,7 +70,11 @@ export function Header() {
             justifyContent="center"
             borderRadius="50%"
           >
-            <Icon as={Article} color="gray.400" weight="fill" />
+            <Icon
+              as={Article}
+              color={pathname === "/about" ? "purple.400" : "gray.400"}
+              weight="fill"
+            />
           </Flex>
 
           <Text as="h2" fontSize="md">
