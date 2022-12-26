@@ -3,6 +3,7 @@ import { CreateUserFormLayout } from "./layouts/CreateUserFormLayout";
 import { UserInfo } from "./pages/Form/UserInfo";
 import { UserAddress } from "./pages/Form/UserAddress";
 import { UserAbout } from "./pages/Form/UserAbout";
+import { UserCreated } from "./pages/Form/UserCreated";
 
 export function Router() {
   return (
@@ -12,6 +13,7 @@ export function Router() {
         <Route path="address" element={<UserAddress />} />
         <Route path="about" element={<UserAbout />} />
       </Route>
+      <Route path="/success" element={<UserCreated />} />
     </Routes>
   );
 }
