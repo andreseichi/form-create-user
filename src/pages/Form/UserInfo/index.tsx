@@ -1,15 +1,18 @@
 import { Box, Button, Flex, Stack } from "@chakra-ui/react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { Input } from "../../../components/Input";
+import { UserFormContext } from "../../../context/UserFormContext";
 
 type UserInfoFormData = {
   name: string;
   password: string;
   confirmPassword: string;
   email: string;
-  date: Date;
+  birthDate: string;
 };
 
 const userInfoFormSchema = z
@@ -21,7 +24,7 @@ const userInfoFormSchema = z
       .string()
       .email()
       .transform((val) => val.split("@")[1]),
-    date: z.string().min(1, "Data obrigatória"),
+    birthDate: z.string().min(1, "Data obrigatória"),
   })
   .required()
   .refine((data) => data.password === data.confirmPassword, {
@@ -29,17 +32,19 @@ const userInfoFormSchema = z
     path: ["confirmPassword"],
   });
 
-const handleSubmitUserInfo: SubmitHandler<UserInfoFormData> = async (
-  values
-) => {
-  console.log(values);
-};
-
 export function UserInfo() {
+  const { handleSetUserInfo } = useContext(UserFormContext);
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState } = useForm<UserInfoFormData>({
     resolver: zodResolver(userInfoFormSchema),
   });
   const errors = formState.errors;
+
+  const handleSubmitUserInfo: SubmitHandler<UserInfoFormData> = (values) => {
+    handleSetUserInfo(values);
+    navigate("/address");
+  };
 
   return (
     <Flex
@@ -84,11 +89,11 @@ export function UserInfo() {
               error={errors.email}
             />
             <Input
-              {...register("date")}
-              name="date"
+              {...register("birthDate")}
+              name="birthDate"
               label="Data de nascimento"
               type="date"
-              error={errors.date}
+              error={errors.birthDate}
             />
           </Flex>
         </Stack>
