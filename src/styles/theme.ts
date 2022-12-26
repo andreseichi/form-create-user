@@ -21,7 +21,7 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: "gray.50",
+        bg: `linear-gradient(90deg, #F8FAFB 50%, white 50%)`,
         color: "black",
       },
     },
