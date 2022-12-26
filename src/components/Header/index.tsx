@@ -42,7 +42,9 @@ export function Header() {
             />
           </Flex>
 
-          <Text fontSize="md">Identificação do Usuário</Text>
+          <Text fontSize="md" fontWeight={500}>
+            Identificação do Usuário
+          </Text>
         </Flex>
         <Flex gap={8} align="center">
           <Flex
@@ -62,7 +64,7 @@ export function Header() {
             />
           </Flex>
 
-          <Text as="h2" fontSize="md">
+          <Text as="h2" fontSize="md" fontWeight={500}>
             Endereço do usuário
           </Text>
         </Flex>
@@ -84,7 +86,7 @@ export function Header() {
             />
           </Flex>
 
-          <Text as="h2" fontSize="md">
+          <Text as="h2" fontSize="md" fontWeight={500}>
             Sobre você
           </Text>
         </Flex>
