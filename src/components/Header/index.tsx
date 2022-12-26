@@ -38,6 +38,7 @@ export function Header() {
               as={User}
               color={pathname === "/" ? "purple.400" : "success"}
               weight="fill"
+              boxSize="24px"
             />
           </Flex>
 
@@ -53,7 +54,12 @@ export function Header() {
             justifyContent="center"
             borderRadius="50%"
           >
-            <Icon as={House} color={addressPageIconColor} weight="fill" />
+            <Icon
+              as={House}
+              color={addressPageIconColor}
+              weight="fill"
+              boxSize="24px"
+            />
           </Flex>
 
           <Text as="h2" fontSize="md">
@@ -74,6 +80,7 @@ export function Header() {
               as={Article}
               color={pathname === "/about" ? "purple.400" : "gray.400"}
               weight="fill"
+              boxSize="24px"
             />
           </Flex>
 
