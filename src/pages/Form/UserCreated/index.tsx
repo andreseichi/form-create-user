@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserFormContext } from "../../../context/UserFormContext";
 
 export function UserCreated() {
-  const { resetUser } = useContext(UserFormContext);
+  const { resetUser, user } = useContext(UserFormContext);
 
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ export function UserCreated() {
               Nome
             </Text>
             <Text fontSize="2xl" lineHeight="36px">
-              Andre
+              {user?.userInfo?.name}
             </Text>
           </Flex>
 
@@ -68,7 +68,7 @@ export function UserCreated() {
               Email
             </Text>
             <Text fontSize="2xl" lineHeight="36px">
-              Andre aqui
+              {user?.userInfo?.email}
             </Text>
           </Flex>
 
@@ -86,7 +86,7 @@ export function UserCreated() {
                   Rua
                 </Text>
                 <Text fontSize="2xl" lineHeight="36px">
-                  tal taltal
+                  {user?.userAddress?.street}
                 </Text>
               </Flex>
 
@@ -100,7 +100,7 @@ export function UserCreated() {
                   Número
                 </Text>
                 <Text fontSize="2xl" lineHeight="36px">
-                  121
+                  {user?.userAddress?.number}
                 </Text>
               </Flex>
             </Flex>
@@ -116,7 +116,7 @@ export function UserCreated() {
               CEP
             </Text>
             <Text fontSize="2xl" lineHeight="36px">
-              00000
+              {user?.userAddress?.cep}
             </Text>
           </Flex>
 
