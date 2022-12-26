@@ -20,12 +20,26 @@ const userInfoFormSchema = z
     name: z.string().min(1, "Nome obrigatório"),
     password: z.string().min(3, "Senha obrigatória"),
     confirmPassword: z.string().min(3, "Confirmação de senha obrigatória"),
-    email: z.string().email(),
+    email: z.string().email({
+      message: "Email inválido",
+    }),
     birthDate: z
-      .preprocess((value) => {
-        if (typeof value == "string" || value instanceof Date)
-          return new Date(value);
-      }, z.date())
+      .preprocess(
+        (value) => {
+          if (
+            (typeof value == "string" && value.trim()) ||
+            value instanceof Date
+          )
+            return new Date(value);
+        },
+        z.date({
+          required_error: "Data de nascimento obrigatória",
+        })
+      )
+      .refine((value) => value instanceof Date, {
+        message: "Data de nascimento inválida",
+        path: ["birthDate"],
+      })
       .transform((value) => {
         return new Date(value).toISOString().split("T")[0];
       }),
