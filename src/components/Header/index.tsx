@@ -13,10 +13,6 @@ export function Header() {
       ? "success"
       : "gray.400";
 
-  useEffect(() => {
-    console.log(pathname);
-  }, []);
-
   return (
     <Flex direction="column" gap={12}>
       <Text as="h1" fontSize="4xl" fontWeight={500}>
