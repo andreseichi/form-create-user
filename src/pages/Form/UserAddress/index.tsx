@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Box, Button, Flex, Stack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -18,7 +18,7 @@ type UserAddressFormData = {
 };
 
 export function UserAddress() {
-  const { handleSetUserAddress } = useContext(UserFormContext);
+  const { handleSetUserAddress, user } = useContext(UserFormContext);
   const navigate = useNavigate();
 
   const userInfoFormSchema = z
@@ -44,10 +44,22 @@ export function UserAddress() {
       path: ["number"],
     });
 
-  const { register, handleSubmit, formState } = useForm<UserAddressFormData>({
-    resolver: zodResolver(userInfoFormSchema),
-  });
+  const { register, handleSubmit, formState, setValue } =
+    useForm<UserAddressFormData>({
+      resolver: zodResolver(userInfoFormSchema),
+    });
   const errors = formState.errors;
+
+  useEffect(() => {
+    if (user?.userAddress) {
+      setValue("cep", user.userAddress.cep);
+      setValue("street", user.userAddress.street);
+      setValue("number", user.userAddress.number);
+      setValue("neighborhood", user.userAddress.neighborhood);
+      setValue("city", user.userAddress.city);
+      setValue("reference", user.userAddress.reference);
+    }
+  }, [user.userAddress]);
 
   const handleSubmitUserAddress: SubmitHandler<UserAddressFormData> = (
     values

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Box, Button, Flex, Stack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ type UserAboutFormData = {
 };
 
 export function UserAbout() {
-  const { handleSetUserAbout } = useContext(UserFormContext);
+  const { handleSetUserAbout, user } = useContext(UserFormContext);
   const navigate = useNavigate();
 
   const userInfoAboutSchema = z
@@ -26,10 +26,17 @@ export function UserAbout() {
     })
     .required();
 
-  const { register, handleSubmit, formState } = useForm<UserAboutFormData>({
-    resolver: zodResolver(userInfoAboutSchema),
-  });
+  const { register, handleSubmit, formState, setValue } =
+    useForm<UserAboutFormData>({
+      resolver: zodResolver(userInfoAboutSchema),
+    });
   const errors = formState.errors;
+
+  useEffect(() => {
+    if (user?.userAbout) {
+      setValue("about", user.userAbout.about);
+    }
+  }, [user.userAbout]);
 
   const handleSubmitUserAbout: SubmitHandler<UserAboutFormData> = (values) => {
     handleSetUserAbout(values);

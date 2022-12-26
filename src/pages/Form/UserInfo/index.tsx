@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Stack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { Input } from "../../../components/Input";
 import { UserFormContext } from "../../../context/UserFormContext";
@@ -30,18 +30,30 @@ const userInfoFormSchema = z
   });
 
 export function UserInfo() {
-  const { handleSetUserInfo } = useContext(UserFormContext);
+  const { handleSetUserInfo, user } = useContext(UserFormContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const { register, handleSubmit, formState } = useForm<UserInfoFormData>({
-    resolver: zodResolver(userInfoFormSchema),
-  });
+  const { register, handleSubmit, formState, setValue } =
+    useForm<UserInfoFormData>({
+      resolver: zodResolver(userInfoFormSchema),
+    });
   const errors = formState.errors;
 
   const handleSubmitUserInfo: SubmitHandler<UserInfoFormData> = (values) => {
     handleSetUserInfo(values);
     navigate("/address");
   };
+
+  useEffect(() => {
+    if (user.userInfo) {
+      setValue("name", user.userInfo.name);
+      setValue("password", user.userInfo.password);
+      setValue("confirmPassword", user.userInfo.confirmPassword);
+      setValue("email", user.userInfo.email);
+      setValue("birthDate", user.userInfo.birthDate);
+    }
+  }, [user]);
 
   return (
     <Flex
