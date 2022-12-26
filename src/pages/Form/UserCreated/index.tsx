@@ -29,6 +29,9 @@ export function UserCreated() {
         align="flex-start"
         gap="12"
         position="relative"
+        border="2px solid"
+        borderColor="gray.100"
+        boxShadow="0px 4px 31px #EEF1F5;"
       >
         <Box alignSelf="center">
           <Text fontWeight={500} fontSize="4xl" lineHeight="54px">

@@ -19,6 +19,9 @@ export function CreateUserFormLayout() {
         direction="column"
         gap="12"
         position="relative"
+        border="2px solid"
+        borderColor="gray.100"
+        boxShadow="0px 4px 31px #EEF1F5;"
       >
         <Header />
 
