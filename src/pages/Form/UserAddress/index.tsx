@@ -83,9 +83,9 @@ export function UserAddress() {
       overflowY="hidden"
       onSubmit={handleSubmit(handleSubmitUserAddress)}
     >
-      <Box w="100%" pr="54px">
+      <Box w="100%" pr={["0", "54px"]}>
         <Stack spacing="26" w="100%">
-          <Flex gap="60px">
+          <Flex gap={["8px", "60px"]}>
             <Input
               {...register("cep")}
               name="cep"
@@ -101,7 +101,7 @@ export function UserAddress() {
             />
           </Flex>
 
-          <Flex gap="60px" w="100%">
+          <Flex gap={["8px", "60px"]} w="100%">
             <Flex gap="8px" w="100%">
               <Input
                 {...register("number")}
@@ -135,13 +135,20 @@ export function UserAddress() {
         </Stack>
       </Box>
 
-      <Flex position="absolute" bottom="26px" alignSelf="flex-end" gap={6}>
+      <Flex
+        position={["initial", "absolute"]}
+        mt={["20px", "0"]}
+        w={["100%", "auto"]}
+        bottom="26px"
+        alignSelf="flex-end"
+        gap={[2, 6]}
+      >
         <Button
           colorScheme="purple"
           backgroundColor="gray.400"
           _hover={{ filter: "brightness(0.9)" }}
           size="lg"
-          minW="226px"
+          minW={["auto", "226px"]}
           w="100%"
           fontWeight={500}
           fontSize="16px"
@@ -157,7 +164,7 @@ export function UserAddress() {
           backgroundColor="purple.400"
           _hover={{ filter: "brightness(0.9)" }}
           size="lg"
-          minW="226px"
+          minW={["auto", "226px"]}
           w="100%"
           fontWeight={500}
           fontSize="16px"

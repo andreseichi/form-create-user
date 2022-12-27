@@ -1,6 +1,5 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import { Article, House, User } from "phosphor-react";
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export function Header() {
@@ -14,13 +13,18 @@ export function Header() {
       : "gray.400";
 
   return (
-    <Flex direction="column" gap={12}>
-      <Text as="h1" fontSize="4xl" fontWeight={500}>
+    <Flex direction="column" gap={[2, 12]}>
+      <Text as="h1" fontSize={["2xl", "4xl"]} fontWeight={500}>
         Criação de usuário
       </Text>
 
-      <Flex align="center" justify="flex-start" gap="8">
-        <Flex gap={8} align="center">
+      <Flex
+        align={["flex-start", "center"]}
+        justify="flex-start"
+        direction={["column", "row"]}
+        gap={["5", "8"]}
+      >
+        <Flex gap={[4, 8]} align="center">
           <Flex
             minW={50}
             minH={50}
@@ -42,7 +46,7 @@ export function Header() {
             Identificação do Usuário
           </Text>
         </Flex>
-        <Flex gap={8} align="center">
+        <Flex gap={[4, 8]} align="center">
           <Flex
             minW={50}
             minH={50}
@@ -64,7 +68,7 @@ export function Header() {
             Endereço do usuário
           </Text>
         </Flex>
-        <Flex gap={8} align="center">
+        <Flex gap={[4, 8]} align="center">
           <Flex
             minW={50}
             minH={50}

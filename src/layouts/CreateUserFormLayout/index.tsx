@@ -9,15 +9,15 @@ export function CreateUserFormLayout() {
       <Flex
         w="100%"
         maxW={1014}
-        minH="738px"
+        minH={["0", "738px"]}
         bg="white"
-        pt="56px"
-        pr="30px"
+        pt={["10px", "56px"]}
+        pr={["8px", "30px"]}
         pb="26px"
-        pl="60px"
+        pl={["10px", "60px"]}
         borderRadius={8}
         direction="column"
-        gap="12"
+        gap={["6", "12"]}
         position="relative"
         border="2px solid"
         borderColor="gray.100"

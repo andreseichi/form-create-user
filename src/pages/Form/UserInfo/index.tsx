@@ -87,7 +87,7 @@ export function UserInfo() {
       overflowY="hidden"
       onSubmit={handleSubmit(handleSubmitUserInfo)}
     >
-      <Box w="100%" pr="54px">
+      <Box w="100%" pr={["0", "54px"]}>
         <Stack spacing="26" w="100%">
           <Input
             {...register("name")}
@@ -95,7 +95,7 @@ export function UserInfo() {
             label="Nome"
             error={errors.name}
           />
-          <Flex gap="60px">
+          <Flex gap={["8px", "60px"]} align="flex-end">
             <Input
               {...register("password")}
               name="password"
@@ -111,7 +111,7 @@ export function UserInfo() {
               error={errors.confirmPassword}
             />
           </Flex>
-          <Flex gap="60px">
+          <Flex gap={["8px", "60px"]} align="flex-end">
             <Input
               {...register("email")}
               name="email"
@@ -129,7 +129,14 @@ export function UserInfo() {
         </Stack>
       </Box>
 
-      <Flex position="absolute" bottom="26px" alignSelf="flex-end" gap={6}>
+      <Flex
+        position={["initial", "absolute"]}
+        bottom="26px"
+        alignSelf="flex-end"
+        gap={6}
+        mt={["20px", "0"]}
+        w={["100%", "auto"]}
+      >
         <Button
           type="submit"
           colorScheme="purple"

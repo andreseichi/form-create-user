@@ -58,7 +58,7 @@ export function UserAbout() {
       overflowY="hidden"
       onSubmit={handleSubmit(handleSubmitUserAbout)}
     >
-      <Box w="100%" pr="54px">
+      <Box w="100%" pr={["0", "54px"]}>
         <Stack spacing="26" w="100%">
           <Flex gap="60px">
             <Textarea
@@ -71,13 +71,20 @@ export function UserAbout() {
         </Stack>
       </Box>
 
-      <Flex position="absolute" bottom="26px" alignSelf="flex-end" gap={6}>
+      <Flex
+        position={["initial", "absolute"]}
+        mt={["20px", "0"]}
+        w={["100%", "auto"]}
+        bottom="26px"
+        alignSelf="flex-end"
+        gap={[2, 6]}
+      >
         <Button
           colorScheme="purple"
           backgroundColor="gray.400"
           _hover={{ filter: "brightness(0.9)" }}
           size="lg"
-          minW="226px"
+          minW={["auto", "226px"]}
           w="100%"
           fontWeight={500}
           fontSize="16px"
@@ -93,7 +100,7 @@ export function UserAbout() {
           backgroundColor="purple.400"
           _hover={{ filter: "brightness(0.9)" }}
           size="lg"
-          minW="226px"
+          minW={["auto", "226px"]}
           w="100%"
           fontWeight={500}
           fontSize="16px"

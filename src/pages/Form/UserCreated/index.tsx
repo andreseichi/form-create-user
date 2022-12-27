@@ -18,16 +18,16 @@ export function UserCreated() {
       <Flex
         w="100%"
         maxW={545}
-        minH="738px"
+        minH={["0", "738px"]}
         bg="white"
-        pt="59px"
-        pr="40px"
+        pt={["10px", "59px"]}
+        pr={["8px", "40px"]}
         pb="38px"
-        pl="50px"
+        pl={["10px", "50px"]}
         borderRadius={8}
         direction="column"
         align="flex-start"
-        gap="12"
+        gap={["6", "12"]}
         position="relative"
         border="2px solid"
         borderColor="gray.100"
@@ -123,7 +123,13 @@ export function UserCreated() {
             </Text>
           </Flex>
 
-          <Box position="absolute" bottom="0" alignSelf="center" w="100%">
+          <Box
+            position={["initial", "absolute"]}
+            mt={["20px", "0"]}
+            w={["100%", "auto"]}
+            bottom="26px"
+            alignSelf="flex-end"
+          >
             <Button
               colorScheme="purple"
               backgroundColor="purple.400"
